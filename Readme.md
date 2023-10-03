@@ -124,7 +124,7 @@ If you're done with this challenge, simply send us a link to a repository that w
 ![museum](./img/65ad4d.jpg)
 
 ## What really makes us happy 😍
-- [ ]  You provide us with a README.md that explains how we can run your app
+- [ ]  You provide us with a README.md that explains how we can run your index
 - [ ]  Your code is well structured, clean and readable
 - [ ]  You add comments and documentation, if your code isn't self-explanatory
 - [ ]  You handle any common errors that could occur

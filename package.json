@@ -1,0 +1,32 @@
+{
+  "name": "challenge-fullstack-engineer",
+  "version": "1.0.0",
+  "author": "Jonas Kraus",
+  "description": "Implementation of challenge",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --build --verbose",
+    "build:utils": "npm run build --workspace ./packages/utils",
+    "build:fe": "npm run build --workspace ./packages/frontend",
+    "build:be": "npm run build --workspace ./packages/backend",
+    "dev:fe": "npm run dev --workspace ./packages/frontend",
+    "start:be": "npm run start --workspace ./packages/backend",
+    "dev:all": "concurrently \"npm run dev:be\" \"npm run dev:fe\"",
+    "dev:be": "npm run dev --workspace ./packages/backend"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.8.2",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "concurrently": "^8.2.1",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3"
+  },
+  "dependencies": {
+    "typescript": "^5.2.2"
+  }
+}

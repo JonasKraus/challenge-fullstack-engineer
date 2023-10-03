@@ -14,3 +14,6 @@ Thumbs.db
 # General
 log/
 *.log
+/packages/*/tsconfig.tsbuildinfo
+/packages/*/dist
+node_modules
