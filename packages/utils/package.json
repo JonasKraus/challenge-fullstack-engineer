@@ -4,6 +4,8 @@
   "description": "package holding utility functions which can be shared between other packages",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc --build"
+    "build": "tsc --build",
+    "test": "jest",
+    "lint": "eslint 'src/*.ts'"
   }
 }

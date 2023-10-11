@@ -1,19 +1,16 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import * as Utils from "@challenge/utils";
-import fs from "fs";
-import readline from "readline";
 import path from "path";
-import { parseCheckpointCsv, parseTrackingsCsv } from "@challenge/utils";
+import { parseCheckpoints, parseTrackings } from "@challenge/utils";
 
 dotenv.config();
 
-const index: Express = express();
-const port = process.env.PORT;
+const app: Express = express();
+const port = process.env.PORT || 3000;
 
-index.get("/user/:email/tracking", async (req: Request, res: Response) => {
+app.get("/user/:email/tracking", async (req: Request, res: Response) => {
 	try {
-		const trackingsMap = await parseTrackingsCsv(
+		const trackingsMap = await parseTrackings(
 			path.join(__dirname, "../data/trackings.csv"),
 		);
 		const email = req.params.email;
@@ -26,11 +23,11 @@ index.get("/user/:email/tracking", async (req: Request, res: Response) => {
 		});
 	}
 });
-index.get(
+app.get(
 	"/checkpoints/:trackingNumber",
 	async (req: Request, res: Response) => {
 		try {
-			const checkpointsMap = await parseCheckpointCsv(
+			const checkpointsMap = await parseCheckpoints(
 				path.join(__dirname, "../data/checkpoints.csv"),
 			);
 			const trackingNumber = req.params.trackingNumber;
@@ -45,6 +42,6 @@ index.get(
 	},
 );
 
-index.listen(port, () => {
+app.listen(port, () => {
 	console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
