@@ -4,24 +4,35 @@
     "target": "es2022",
     "module": "commonjs",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "resolveJsonModule": true,
     "declaration": true,
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "composite": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "typeRoots": ["./node_modules/@types", "./node_modules"],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
   "files": [
   ],
+  "exclude": ["./packages/**/jest.config.ts", "./packages/**/src/**/*.test.ts*"],
+  "include": ["./packages/**/src/**/*.ts"],
   "references": [
     {
-      "path": "./packages/utils"
+      "path": "./packages/utils/tsconfig.json"
     },
     {
-      "path": "./packages/frontend"
+      "path": "./packages/frontend/tsconfig.json"
     },
     {
-      "path": "./packages/backend"
+      "path": "./packages/backend/tsconfig.json"
     }
   ]
 }

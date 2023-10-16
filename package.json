@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc --build --verbose",
     "test": "jest",
+    "test:all": "npm run test --workspaces",
     "lint": "eslint 'packages/**/*.{tsx,ts}'",
     "test:utils": "npm run test --workspace ./packages/utils",
     "test:fe": "npm run test --workspace ./packages/frontend",
@@ -26,8 +27,12 @@
     "@babel/preset-env": "^7.22.20",
     "@babel/preset-typescript": "^7.23.0",
     "@jest/globals": "^29.7.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
     "@types/jest": "^29.5.5",
     "@types/node": "^20.8.2",
+    "@types/react-dom": "^18.2.13",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "concurrently": "^8.2.1",
@@ -38,6 +43,7 @@
     "ts-jest": "^29.1.1"
   },
   "dependencies": {
+    "@challenge/utils": "^1.0.0",
     "typescript": "^5.2.2"
   }
 }

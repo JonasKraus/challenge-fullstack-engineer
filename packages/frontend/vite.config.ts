@@ -3,5 +3,11 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+	optimizeDeps: {
+		include: ['@challenge/utils'],
+	},
+	resolve: {
+		preserveSymlinks: true,
+	},
+	plugins: [react()],
 })

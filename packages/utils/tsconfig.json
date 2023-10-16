@@ -1,9 +1,11 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "es2022",
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "noEmit": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
@@ -11,5 +13,6 @@
     "composite": true,
     "rootDir": "./src",
     "outDir": "./dist"
-  }
+  },
+  "include": ["./src"]
 }
