@@ -1,0 +1,50 @@
+{
+  "name": "challenge-fullstack-engineer",
+  "version": "1.0.0",
+  "author": "Jonas Kraus",
+  "description": "Implementation of challenge",
+  "scripts": {
+    "build": "tsc --build --verbose",
+    "test": "jest",
+    "test:all": "npm run test --workspaces",
+    "lint": "eslint 'packages/**/*.{tsx,ts}'",
+    "test:utils": "npm run test --workspace ./packages/utils",
+    "test:fe": "npm run test --workspace ./packages/frontend",
+    "test:be": "npm run test --workspace ./packages/backend",
+    "build:utils": "npm run build --workspace ./packages/utils",
+    "build:fe": "npm run build --workspace ./packages/frontend",
+    "build:be": "npm run build --workspace ./packages/backend",
+    "dev:fe": "npm run dev --workspace ./packages/frontend",
+    "start:be": "npm run start --workspace ./packages/backend",
+    "dev:all": "concurrently \"npm run dev:be\" \"npm run dev:fe\"",
+    "dev:be": "npm run dev --workspace ./packages/backend",
+    "demo": "npm i && npm run build && npm run dev:all"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/preset-typescript": "^7.23.0",
+    "@jest/globals": "^29.7.0",
+    "@testing-library/jest-dom": "^6.1.4",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.8.2",
+    "@types/react-dom": "^18.2.13",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "concurrently": "^8.2.1",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.0.3",
+    "ts-jest": "^29.1.1"
+  },
+  "dependencies": {
+    "@challenge/utils": "^1.0.0",
+    "typescript": "^5.2.2"
+  }
+}

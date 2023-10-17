@@ -1,0 +1,17 @@
+{
+  "name": "@challenge/utils",
+  "version": "1.0.0",
+  "description": "package holding utility functions which can be shared between other packages",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "transpiled": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "test": "jest",
+    "lint": "eslint 'src/*.ts'"
+  }
+}
