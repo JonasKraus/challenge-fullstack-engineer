@@ -51,6 +51,9 @@ module.exports = {
 				"<rootDir>/packages/frontend/src/**/*.test.ts*"
 			],
 			setupFilesAfterEnv: ["<rootDir>/packages/frontend/jest.setup.ts"],
+			moduleNameMapper: {
+				'^.+\\.css$': '<rootDir>/packages/frontend/__mocks__/stylesMock.js',
+			},
 		},
 	],
 	testMatch: [

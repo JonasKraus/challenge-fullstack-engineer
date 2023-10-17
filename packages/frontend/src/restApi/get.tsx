@@ -3,9 +3,9 @@ import { BACKEND_ROUTES, BACKEND_BASE_URL } from "@challenge/utils";
 
 
 function useGetData<T>(route: BACKEND_ROUTES, id: string) {
-	const [data, setData] = useState<T|null>(null);
+	const [data, setData] = useState<T>();
 	const [loading, setLoading] = useState<Boolean>(true);
-	const [error, setError] = useState<unknown>(null);
+	const [error, setError] = useState<Error>();
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -19,7 +19,7 @@ function useGetData<T>(route: BACKEND_ROUTES, id: string) {
 				setData(responseData);
 				setLoading(false);
 			} catch (err: unknown) {
-				setError(err);
+				setError(err as Error);
 				setLoading(false);
 			}
 		};
@@ -28,6 +28,6 @@ function useGetData<T>(route: BACKEND_ROUTES, id: string) {
 	}, []);
 
 	return { data, loading, error };
-};
+}
 
 export default useGetData;

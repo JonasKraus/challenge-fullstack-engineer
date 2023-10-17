@@ -7,7 +7,10 @@ module.exports = {
 	testMatch: ["**/*.test.ts*"],
 	transform: {
 		"^.+\\.(ts|tsx)$": "ts-jest",
-		[`(${esModules}).+\\.js$`]: "babel-jest"
+		[`(${esModules}).+\\.js$`]: "babel-jest",
+	},
+	moduleNameMapper: {
+		'^.+\\.css$': '<rootDir>/__mocks__/stylesMock.js',
 	},
 	transformIgnorePatterns: [`/node_modules/(?!${esModules})`],
 	setupFilesAfterEnv: ['<rootDir>/jest.setup.ts']

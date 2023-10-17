@@ -1,0 +1,25 @@
+ul {
+	list-style: none;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #ccc;
+	border-radius: 0.5em;
+	margin: 1em;
+}
+.container:hover {
+	cursor: pointer;
+	background-color: #333;
+}
+
+.row {
+	display: flex;
+}
+
+.content {
+	flex: 1;
+	margin: 1.5em;
+	text-align: left;
+}
