@@ -17,7 +17,8 @@
     "dev:fe": "npm run dev --workspace ./packages/frontend",
     "start:be": "npm run start --workspace ./packages/backend",
     "dev:all": "concurrently \"npm run dev:be\" \"npm run dev:fe\"",
-    "dev:be": "npm run dev --workspace ./packages/backend"
+    "dev:be": "npm run dev --workspace ./packages/backend",
+    "demo": "npm i && npm run build && npm run dev:all"
   },
   "workspaces": [
     "packages/*"
