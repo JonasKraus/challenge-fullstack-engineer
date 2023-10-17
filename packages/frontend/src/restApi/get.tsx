@@ -4,7 +4,7 @@ import { BACKEND_ROUTES, BACKEND_BASE_URL } from "@challenge/utils";
 
 function useGetData<T>(route: BACKEND_ROUTES, id: string) {
 	const [data, setData] = useState<T>();
-	const [loading, setLoading] = useState<Boolean>(true);
+	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<Error>();
 
 	useEffect(() => {
@@ -25,6 +25,7 @@ function useGetData<T>(route: BACKEND_ROUTES, id: string) {
 		};
 
 		fetchData();
+		// eslint-disable-next-line
 	}, []);
 
 	return { data, loading, error };
