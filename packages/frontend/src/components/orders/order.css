@@ -9,7 +9,7 @@ ul {
 	border-radius: 0.5em;
 	margin: 1em;
 }
-.container:hover {
+.clickable:hover {
 	cursor: pointer;
 	background-color: #333;
 }
@@ -22,4 +22,17 @@ ul {
 	flex: 1;
 	margin: 1.5em;
 	text-align: left;
+}
+
+.image_container {
+	margin-top: 2.5em;
+	width: 4em;
+	height: 4em;
+	overflow: hidden;
+}
+
+img.article-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }

@@ -24,15 +24,14 @@ export interface Tracking {
 	productName: string
 }
 export interface Order {
-	tracking: Tracking,
+	trackings: Tracking[],
 	checkpoints?: Checkpoint[]
 }
 
 export const BACKEND_BASE_URL = "http://localhost:3000"
 export enum BACKEND_ROUTES {
-	TRACKINGS = "/user/:email/tracking",
-	CHECKPOINTS = "/checkpoints/:trackingNumber",
-	ORDERS = "/user/:email/order"
+	ORDERS = "/user/:email/order",
+	ORDER = "/order/:trackingNumber"
 }
 
 /**

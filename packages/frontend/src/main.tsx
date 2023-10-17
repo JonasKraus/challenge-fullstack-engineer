@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BACKEND_ROUTES } from "@challenge/utils";
 import { OrderOverview } from "./components/orders/OrderOverview";
 import Login from "./components/login/Login";
+import { OrderDetailView } from "./components/orders/OrderDetailView";
 
 const router = createBrowserRouter([
 	{
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
 			{
 				path: BACKEND_ROUTES.ORDERS,
 				element: <OrderOverview/>
+			},
+			{
+				path: BACKEND_ROUTES.ORDER,
+				element: <OrderDetailView/>
 			}
 		]
 	}

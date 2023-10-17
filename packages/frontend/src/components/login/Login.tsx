@@ -9,15 +9,12 @@ function Login() {
 	const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
 	const handleLogin = () => {
-		console.info("aaa");
-		console.info(BACKEND_ROUTES.ORDERS);
-		console.info("aaa")
 		navigate(BACKEND_ROUTES.ORDERS.replace(":email", email));
 	};
 
 	const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setValid(emailRegex.test(e.target.value));
-		isValid && setEmail(e.target.value);
+		setEmail(e.target.value);
 	};
 
 	return (

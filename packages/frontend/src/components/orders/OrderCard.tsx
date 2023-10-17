@@ -1,17 +1,20 @@
 import { Order } from "@challenge/utils";
-import "./OrderCard.css";
+import "./order.css";
+import { useNavigate } from "react-router-dom";
 
 export const OrderCard = ({ order }: { order: Order }) => {
+	const navigate = useNavigate();
 
 	const handleClick = () => {
-		console.info(order);
-	}
+		navigate(`/order/${order.trackings[0].trackingNumber}`);
+	};
+
 	return (
-		<div className="container" onClick={handleClick}>
+		<div className="container clickable" onClick={handleClick}>
 			<div className="row">
 				<div className="content">
 					<p>Order Number</p>
-					<h3>{order.tracking.orderNo}</h3>
+					<h3>{order.trackings[0].orderNo}</h3>
 				</div>
 				<div className="content">
 					<p>Current Status</p>
@@ -24,9 +27,9 @@ export const OrderCard = ({ order }: { order: Order }) => {
 			</div>
 			<div className="content">
 				<p>Delivery Address</p>
-				<h3>{order.tracking.street}</h3>
+				<h3>{order.trackings[0].street}</h3>
 				<h3>
-					{order.tracking.zipCode} {order.tracking.city}
+					{order.trackings[0].zipCode} {order.trackings[0].city}
 				</h3>
 			</div>
 		</div>

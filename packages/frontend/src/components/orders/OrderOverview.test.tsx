@@ -46,7 +46,7 @@ describe("OrderOverview Component", () => {
 	test("renders list of orders when data is loaded", async () => {
 		const mockData: Order[] = [
 			{
-				tracking: {
+				trackings: [{
 					orderNo: "order-nr-123",
 					trackingNumber: "987",
 					courier: "DHL",
@@ -58,7 +58,7 @@ describe("OrderOverview Component", () => {
 					articleImageUrl: "",
 					quantity: "1",
 					productName: "Fancy product 1",
-				},
+				}],
 				checkpoints: [
 					{
 						location: "Near by",

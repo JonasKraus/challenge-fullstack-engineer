@@ -12,7 +12,7 @@ describe("useGetData", () => {
 
 	const TestComponent = () => {
 		const { data } = useGetData<Checkpoint[]>(
-			BACKEND_ROUTES.CHECKPOINTS,
+			BACKEND_ROUTES.ORDERS,
 			"123",
 		);
 		return (
@@ -24,7 +24,7 @@ describe("useGetData", () => {
 		);
 	};
 
-	it("test with renddeer", async () => {
+	it("test with renderer", async () => {
 		const responseData: Checkpoint[] = [
 			{
 				status: "status",

@@ -21,38 +21,6 @@ app.use(
 
 let trackingsMapPromise: Promise<Map<string, Tracking[]>> | undefined;
 let checkpointsMapPromise: Promise<Map<string, Checkpoint[]>> | undefined;
-app.get(BACKEND_ROUTES.TRACKINGS.valueOf(), async (req: Request, res: Response) => {
-	try {
-		trackingsMapPromise = trackingsMapPromise ? trackingsMapPromise : parseTrackings(
-			path.join(__dirname, "../data/trackings.csv"),
-		);
-		const email = req.params.email;
-		const trackings = await trackingsMapPromise;
-		res.status(200).json(trackings.get(email) ?? []);
-	} catch (e) {
-		res.status(500).json({
-			status: "error",
-			statusMessage: `failed due to ${e}`,
-		});
-	}
-});
-app.get(BACKEND_ROUTES.CHECKPOINTS.valueOf(),
-	async (req: Request, res: Response) => {
-		try {
-			checkpointsMapPromise = checkpointsMapPromise ? checkpointsMapPromise : parseCheckpoints(
-				path.join(__dirname, "../data/checkpoints.csv"),
-			);
-			const trackingNumber = req.params.trackingNumber;
-			const checkpoints = await checkpointsMapPromise;
-			res.status(200).json(checkpoints.get(trackingNumber) ?? []);
-		} catch (e) {
-			res.status(500).json({
-				status: "error",
-				statusMessage: `failed due to ${e}`,
-			});
-		}
-	},
-);
 app.get(BACKEND_ROUTES.ORDERS.valueOf(),
 	async (req: Request, res: Response) => {
 		try {
@@ -62,14 +30,52 @@ app.get(BACKEND_ROUTES.ORDERS.valueOf(),
 			trackingsMapPromise = trackingsMapPromise ? trackingsMapPromise : parseTrackings(
 				path.join(__dirname, "../data/trackings.csv"),
 			);
+			// email for which we should send data
 			const email = req.params.email;
+			// parsed all trackings
 			const trackings = await trackingsMapPromise;
+			// parsed all checkpoints
 			const checkpoints = await checkpointsMapPromise;
+			// map that stores all trackings of email
+			const trackingsByTrackingNumber: Map<string, Tracking[]> = new Map<string /* orderNumber */, Tracking[]>();
+			trackings.get(email)?.forEach((tracking) => {
+				const list = trackingsByTrackingNumber.get(tracking.trackingNumber) ?? [];
+				list.push(tracking);
+				trackingsByTrackingNumber.set(tracking.trackingNumber, list);
+			});
 			const orders: Order[] = [];
-			trackings.get(email)?.map((tracking) => {
-				orders.push({tracking: tracking, checkpoints: checkpoints.get(tracking.trackingNumber)})
+			trackingsByTrackingNumber.forEach((trackings) => {
+				orders.push({trackings: trackings, checkpoints: checkpoints.get(trackings[0].trackingNumber)})
 			});
 			res.status(200).json(orders);
+		} catch (e) {
+			res.status(500).json({
+				status: "error",
+				statusMessage: `failed due to ${e}`,
+			});
+		}
+	},
+);
+app.get(BACKEND_ROUTES.ORDER,
+	async (req: Request, res: Response) => {
+		try {
+			checkpointsMapPromise = checkpointsMapPromise ? checkpointsMapPromise : parseCheckpoints(
+				path.join(__dirname, "../data/checkpoints.csv"),
+			);
+			trackingsMapPromise = trackingsMapPromise ? trackingsMapPromise : parseTrackings(
+				path.join(__dirname, "../data/trackings.csv"),
+			);
+			const trackingNumber = req.params.trackingNumber;
+			// parsed all trackings
+			const trackings = await trackingsMapPromise;
+			// parsed all checkpoints
+			const checkpoints = await checkpointsMapPromise;
+			// map that stores all trackings of given trackingNumber
+			const trackingsByTrackingNumber: Tracking[] = Array.from(trackings.values()).flatMap((trackings) =>
+				trackings.filter((tracking) => tracking.trackingNumber === trackingNumber)
+			);
+			const order: Order = {trackings: trackingsByTrackingNumber ?? [], checkpoints: checkpoints.get(trackingNumber)};
+			res.status(200).json(order);
 		} catch (e) {
 			res.status(500).json({
 				status: "error",
